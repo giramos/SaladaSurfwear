@@ -20,9 +20,11 @@ import javax.swing.JPasswordField;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Registro extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel panelPrincipal;
 	private JPanel panelRegistro;
 	private JLabel lblNombre;
@@ -72,7 +74,6 @@ public class Registro extends JFrame {
 		setContentPane(panelPrincipal);
 		panelPrincipal.setLayout(new BorderLayout(0, 0));
 		panelPrincipal.add(getPanelRegistro(), BorderLayout.CENTER);
-		setLocationRelativeTo(null);
 	}
 
 	private JPanel getPanelRegistro() {
@@ -157,7 +158,7 @@ public class Registro extends JFrame {
 			btnSiguiente.setBackground(new Color(0, 153, 0));
 			btnSiguiente.setFont(new Font("Tahoma", Font.BOLD, 12));
 			btnSiguiente.setMnemonic('S');
-			btnSiguiente.setBounds(430, 354, 100, 31);
+			btnSiguiente.setBounds(412, 351, 100, 31);
 		}
 		return btnSiguiente;
 	}
@@ -166,13 +167,14 @@ public class Registro extends JFrame {
 			btnCancelar = new JButton("Cancelar");
 			btnCancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
 				}
 			});
 			btnCancelar.setMnemonic('C');
 			btnCancelar.setForeground(Color.WHITE);
 			btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 12));
 			btnCancelar.setBackground(new Color(255, 0, 0));
-			btnCancelar.setBounds(537, 354, 100, 31);
+			btnCancelar.setBounds(519, 351, 100, 31);
 		}
 		return btnCancelar;
 	}
@@ -207,6 +209,7 @@ public class Registro extends JFrame {
 	private JRadioButton getRdHombre() {
 		if (rdHombre == null) {
 			rdHombre = new JRadioButton("Hombre");
+			rdHombre.setHorizontalAlignment(SwingConstants.CENTER);
 			rdHombre.setBorder(new LineBorder(new Color(0, 0, 0)));
 			rdHombre.setSelected(true);
 			rdHombre.setMnemonic('H');
@@ -218,6 +221,7 @@ public class Registro extends JFrame {
 	private JRadioButton getRdMujer() {
 		if (rdMujer == null) {
 			rdMujer = new JRadioButton("Mujer");
+			rdMujer.setHorizontalAlignment(SwingConstants.CENTER);
 			rdMujer.setBorder(new LineBorder(new Color(0, 0, 0)));
 			rdMujer.setMnemonic('M');
 			rdMujer.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
@@ -229,7 +233,7 @@ public class Registro extends JFrame {
 		if (tfPassword == null) {
 			tfPassword = new JPasswordField();
 			tfPassword.setBorder(new LineBorder(new Color(0, 0, 0)));
-			tfPassword.setBounds(118, 244, 497, 31);
+			tfPassword.setBounds(118, 244, 501, 31);
 		}
 		return tfPassword;
 	}
@@ -237,7 +241,7 @@ public class Registro extends JFrame {
 		if (tfPassword2 == null) {
 			tfPassword2 = new JPasswordField();
 			tfPassword2.setBorder(new LineBorder(new Color(0, 0, 0)));
-			tfPassword2.setBounds(226, 299, 377, 31);
+			tfPassword2.setBounds(226, 299, 393, 31);
 		}
 		return tfPassword2;
 	}

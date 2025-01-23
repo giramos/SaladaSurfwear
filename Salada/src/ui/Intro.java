@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.Font;
@@ -29,8 +30,6 @@ public class Intro extends JFrame {
 	private JPasswordField tfPassword;
 	private JButton btnIniciar;
 
-	
-
 	/**
 	 * Create the frame.
 	 */
@@ -50,21 +49,25 @@ public class Intro extends JFrame {
 		panelPrincipal.add(getPanelLogin());
 		setLocationRelativeTo(null);
 	}
+
 	private JPanel getPanelRegistro() {
 		if (panelRegistro == null) {
 			panelRegistro = new JPanel();
-			panelRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Registro", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panelRegistro.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Registro",
+					TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelRegistro.setBounds(156, 214, 332, 97);
 			panelRegistro.setLayout(null);
 			panelRegistro.add(getBtnRegistro());
 		}
 		return panelRegistro;
 	}
+
 	private JButton getBtnRegistro() {
 		if (btnRegistro == null) {
 			btnRegistro = new JButton("Registro");
 			btnRegistro.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					iniciarVentanaRegistro();
 				}
 			});
 			btnRegistro.setForeground(new Color(255, 255, 255));
@@ -76,11 +79,13 @@ public class Intro extends JFrame {
 		}
 		return btnRegistro;
 	}
+
 	private JPanel getPanelLogin() {
 		if (panelLogin == null) {
 			panelLogin = new JPanel();
 			panelLogin.setLayout(null);
-			panelLogin.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Inicio", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+			panelLogin.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Inicio", TitledBorder.LEADING,
+					TitledBorder.TOP, null, new Color(0, 0, 0)));
 			panelLogin.setBounds(39, 17, 565, 178);
 			panelLogin.add(getLblEmail());
 			panelLogin.add(getLblPassword());
@@ -90,6 +95,7 @@ public class Intro extends JFrame {
 		}
 		return panelLogin;
 	}
+
 	private JLabel getLblEmail() {
 		if (lblEmail == null) {
 			lblEmail = new JLabel("Email:");
@@ -98,6 +104,7 @@ public class Intro extends JFrame {
 		}
 		return lblEmail;
 	}
+
 	private JLabel getLblPassword() {
 		if (lblPassword == null) {
 			lblPassword = new JLabel("Password:");
@@ -106,6 +113,7 @@ public class Intro extends JFrame {
 		}
 		return lblPassword;
 	}
+
 	private JTextField getTfEmail() {
 		if (tfEmail == null) {
 			tfEmail = new JTextField();
@@ -116,6 +124,7 @@ public class Intro extends JFrame {
 		}
 		return tfEmail;
 	}
+
 	private JPasswordField getTfPassword() {
 		if (tfPassword == null) {
 			tfPassword = new JPasswordField();
@@ -124,11 +133,13 @@ public class Intro extends JFrame {
 		}
 		return tfPassword;
 	}
+
 	private JButton getBtnIniciar() {
 		if (btnIniciar == null) {
 			btnIniciar = new JButton("Iniciar");
 			btnIniciar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					checkIniciar();
 				}
 			});
 			btnIniciar.setMnemonic('I');
@@ -139,5 +150,20 @@ public class Intro extends JFrame {
 			btnIniciar.setBounds(207, 121, 145, 46);
 		}
 		return btnIniciar;
+	}
+
+	private void checkIniciar() {
+		if (getTfEmail().getText().isBlank() || getTfEmail().getText().isEmpty() || getTfPassword().getText().isBlank()
+				|| getTfPassword().getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "El email/password no pueden estar vacíos");
+		} else {
+			iniciarVentanaRegistro();
+		}
+	}
+
+	private void iniciarVentanaRegistro() {
+		Registro frame = new Registro();
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 	}
 }
